@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Para ti 💗</title>
+
+
+<style>
+
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
+
+*{
+    box-sizing:border-box;
+}
+
+html,
+body{
+
+    margin:0;
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+}
+
+body{
+
+    background:#08090d;
+
+    font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+/* =========================
+   ESCENA
+========================= */
+
+.scene{
+
+    width:min(94vw,760px);
+
+    height:min(92vh,760px);
+
+    position:relative;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+/* BRILLO */
+
+.glow{
+
+    position:absolute;
+
+    width:75%;
+
+    height:55%;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,105,160,.15);
+
+    filter:blur(60px);
+
+}
+
+
+/* =========================
+   SOBRE
+========================= */
+
+.envelope{
+
+    width:min(82vw,560px);
+
+    aspect-ratio:1.55;
+
+    position:relative;
+
+    cursor:pointer;
+
+    filter:
+    drop-shadow(
+        0 22px 18px
+        rgba(0,0,0,.40)
+    );
+
+    animation:
+    flotar 3.5s
+    ease-in-out
+    infinite;
+
+    transition:
+    transform .7s ease;
+
+}
+
+.envelope:hover{
+
+    transform:
+    translateY(-7px)
+    scale(1.01);
+
+}
+
+
+/* PARTE TRASERA */
+
+.back{
+
+    position:absolute;
+
+    inset:0;
+
+    background:#f7a5c4;
+
+    border-radius:5px;
+
+    overflow:hidden;
+
+}
+
+.back::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    linear-gradient(
+        145deg,
+        transparent 49%,
+        #f8c3d8 50%
+    ),
+
+    linear-gradient(
+        35deg,
+        transparent 49%,
+        #f48eb5 50%
+    );
+
+}
+
+
+/* PARTE INFERIOR */
+
+.bottom-fold{
+
+    position:absolute;
+
+    inset:0;
+
+    background:#f8b7d0;
+
+    clip-path:
+
+    polygon(
+        0 0,
+        50% 58%,
+        100% 0,
+        100% 100%,
+        0 100%
+    );
+
+    z-index:2;
+
+}
+
+
+/* =========================
+   SOLAPA
+========================= */
+
+.flap{
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+
+    height:62%;
+
+    background:#f45b91;
+
+    clip-path:
+
+    polygon(
+        0 0,
+        100% 0,
+        50% 100%
+    );
+
+    transform-origin:top;
+
+    transition:
+
+    transform
+    1s
+    cubic-bezier(.2,.8,.2,1);
+
+    z-index:5;
+
+}
+
+
+/* =========================
+   CORAZÓN DEL SOBRE
+========================= */
+
+.seal{
+
+    position:absolute;
+
+    left:50%;
+    top:43%;
+
+    transform:
+    translate(-50%,-50%);
+
+    width:48px;
+    height:48px;
+
+    border-radius:50%;
+
+    background:#e94178;
+
+    color:white;
+
+    display:grid;
+
+    place-items:center;
+
+    font-size:24px;
+
+    box-shadow:
+
+    0 5px 15px
+    rgba(200,40,90,.40);
+
+    z-index:6;
+
+    transition:
+    opacity .3s;
+
+}
+
+
+/* =========================
+   NOMBRES
+========================= */
+
+.sender{
+
+    position:absolute;
+
+    left:7%;
+    bottom:8%;
+
+    z-index:4;
+
+    color:#bd547d;
+
+    font-size:
+    clamp(
+        11px,
+        2vw,
+        16px
+    );
+
+    line-height:1.35;
+
+}
+
+
+/* =========================
+   CARTA
+========================= */
+
+.letter{
+
+    position:absolute;
+
+    width:80%;
+    height:82%;
+
+    left:10%;
+    top:6%;
+
+    background:#fffdfd;
+
+    z-index:4;
+
+    padding:
+    clamp(
+        20px,
+        4vw,
+        38px
+    );
+
+    box-shadow:
+
+    0 8px 25px
+    rgba(100,30,50,.15);
+
+    transform:
+
+    translateY(75%)
+    scale(.92);
+
+    opacity:0;
+
+    transition:
+
+    transform
+    1s
+    cubic-bezier(.2,.8,.2,1),
+
+    opacity .5s;
+
+    overflow:auto;
+
+}
+
+
+/* DECORACIÓN DE LA CARTA */
+
+.letter::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:35%;
+    height:100%;
+
+    opacity:.20;
+
+    background:
+
+    radial-gradient(
+        circle at 35% 18%,
+        #ef6b98 0 7px,
+        transparent 8px
+    ),
+
+    radial-gradient(
+        circle at 45% 30%,
+        #f39bb9 0 9px,
+        transparent 10px
+    ),
+
+    radial-gradient(
+        circle at 25% 40%,
+        #ee709d 0 6px,
+        transparent 7px
+    );
+
+    pointer-events:none;
+
+}
+
+
+/* =========================
+   TEXTO
+========================= */
+
+.letter h1{
+
+    position:relative;
+
+    margin:
+    0 0 15px;
+
+    color:#c84d79;
+
+    font-size:
+    clamp(
+        18px,
+        4vw,
+        29px
+    );
+
+}
+
+
+.letter p{
+
+    position:relative;
+
+    margin:8px 0;
+
+    font-size:
+    clamp(
+        13px,
+        2.5vw,
+        18px
+    );
+
+    line-height:1.5;
+
+}
+
+
+/* =========================
+   CONTADOR
+========================= */
+
+.counter-title{
+
+    position:relative;
+
+    margin-top:25px !important;
+
+    text-align:center;
+
+    font-weight:bold;
+
+    color:#bd416e;
+
+}
+
+
+.counter{
+
+    position:relative;
+
+    text-align:center;
+
+    font-weight:bold;
+
+    font-size:
+    clamp(
+        13px,
+        2.8vw,
+        19px
+    );
+
+    line-height:1.7;
+
+    color:#bd416e;
+
+    padding:
+    8px 4px;
+
+}
+
+
+/* =========================
+   CURSOR
+========================= */
+
+.cursor{
+
+    display:inline-block;
+
+    width:7px;
+
+    height:1em;
+
+    background:#ed5689;
+
+    vertical-align:-2px;
+
+    animation:
+    parpadear .7s
+    infinite;
+
+}
+
+
+/* =========================
+   SOBRE ABIERTO
+========================= */
+
+.open .flap{
+
+    transform:
+    rotateX(180deg);
+
+    z-index:1;
+
+}
+
+
+.open .seal{
+
+    opacity:0;
+
+}
+
+
+.open .letter{
+
+    transform:
+
+    translateY(0)
+    scale(1);
+
+    opacity:1;
+
+    z-index:7;
+
+}
+
+
+/* =========================
+   CORAZONES FLOTANDO
+========================= */
+
+.heart{
+
+    position:absolute;
+
+    color:#ff6f9f;
+
+    font-size:20px;
+
+    pointer-events:none;
+
+    opacity:.8;
+
+    animation:
+    subir linear infinite;
+
+}
+
+
+.h1{
+
+    left:5%;
+    bottom:18%;
+
+    animation-duration:5s;
+
+}
+
+
+.h2{
+
+    right:6%;
+    bottom:25%;
+
+    animation-duration:6s;
+
+    animation-delay:1s;
+
+}
+
+
+.h3{
+
+    left:12%;
+    top:18%;
+
+    animation-duration:7s;
+
+    animation-delay:2s;
+
+}
+
+
+.h4{
+
+    right:14%;
+    top:25%;
+
+    animation-duration:5.5s;
+
+    animation-delay:.5s;
+
+}
+
+
+.h5{
+
+    left:45%;
+    top:5%;
+
+    animation-duration:6.5s;
+
+    animation-delay:1.5s;
+
+}
+
+
+/* =========================
+   TEXTO DE AYUDA
+========================= */
+
+.hint{
+
+    position:absolute;
+
+    bottom:2%;
+
+    color:#ffd1e0;
+
+    font-family:Arial,sans-serif;
+
+    font-size:12px;
+
+    opacity:.8;
+
+}
+
+
+/* =========================
+   ANIMACIONES
+========================= */
+
+@keyframes flotar{
+
+    0%,100%{
+
+        transform:
+        translateY(0);
+
+    }
+
+    50%{
+
+        transform:
+        translateY(-9px);
+
+    }
+
+}
+
+
+@keyframes subir{
+
+    0%{
+
+        transform:
+        translateY(30px)
+        scale(.6);
+
+        opacity:0;
+
+    }
+
+    15%{
+
+        opacity:.9;
+
+    }
+
+    100%{
+
+        transform:
+        translateY(-260px)
+        scale(1.2)
+        rotate(15deg);
+
+        opacity:0;
+
+    }
+
+}
+
+
+@keyframes parpadear{
+
+    50%{
+
+        opacity:0;
+
+    }
+
+}
+
+
+/* =========================
+   CELULARES PEQUEÑOS
+========================= */
+
+@media(max-height:650px){
+
+    .scene{
+
+        height:96vh;
+
+    }
+
+    .letter{
+
+        padding:15px;
+
+    }
+
+    .letter h1{
+
+        margin-bottom:7px;
+
+    }
+
+    .counter-title{
+
+        margin-top:12px !important;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="scene">
+
+
+    <!-- BRILLO -->
+
+    <div class="glow"></div>
+
+
+    <!-- CORAZONES -->
+
+    <div class="heart h1">♥</div>
+
+    <div class="heart h2">♥</div>
+
+    <div class="heart h3">♥</div>
+
+    <div class="heart h4">♥</div>
+
+    <div class="heart h5">♥</div>
+
+
+    <!-- =========================
+         SOBRE
+    ========================== -->
+
+    <div
+        class="envelope"
+        id="envelope"
+    >
+
+
+        <!-- PARTE TRASERA -->
+
+        <div class="back"></div>
+
+
+        <!-- PARTE INFERIOR -->
+
+        <div class="bottom-fold"></div>
+
+
+        <!-- NOMBRES -->
+
+        <div class="sender">
+
+            Para:
+            <b>MI amor </b>
+
+            <br>
+
+            De:
+            <b>Tu amor</b>
+
+        </div>
+
+
+        <!-- SOLAPA -->
+
+        <div class="flap"></div>
+
+
+        <!-- SELLO -->
+
+        <div class="seal">
+
+            ♥️
+
+        </div>
+
+
+        <!-- =========================
+             CARTA
+        ========================== -->
+
+        <article class="letter">
+
+
+            <h1>
+
+                Para el Amor de mi Vida:
+
+            </h1>
+
+
+            <p>
+
+                Mi niño hermoso, Eduardo Hernández Casimiro:
+
+Nunca imaginé que una persona pudiera llegar a significar tanto para mí. Desde que llegaste a mi vida, llenaste mis días de alegría, de tranquilidad y de un amor que jamás pensé sentir con tanta intensidad.
+
+Amo cada detalle de ti, desde tu forma de ser hasta esas palabras que me dices y que se han quedado grabadas en mi corazón. Amo cuando me dices “chaparrito”, cuando me haces reír en los momentos más inesperados y cuando, sin darte cuenta, haces que todo sea mejor simplemente por estar conmigo.
+
+No voy a decir que nuestro camino ha sido perfecto, porque hemos tenido inconvenientes, diferencias y momentos difíciles. Pero precisamente ahí entendí lo grande que es nuestro amor. Porque a pesar de todo, aquí seguimos, eligiéndonos una y otra vez. Porque cuando algo es real, no se rompe por las tormentas; se fortalece.
+
+Tú me has enseñado que amar no es solo compartir los momentos felices, sino permanecer juntos cuando las cosas se complican. Y cada día que pasa estoy más seguro de que eres la persona con la que quiero compartir mi vida.
+
+Quiero seguir escuchando tu voz al despertar, seguir creando recuerdos contigo, seguir celebrando tus logros, apoyarte en tus caídas y caminar a tu lado en cada etapa de nuestras vidas.
+
+Mi niño hermoso, gracias por amarme, por cuidarme, por hacerme sentir especial y por convertirme en una mejor persona.
+
+Y hoy, con todo el amor que existe en mi corazón, quiero preguntarte algo que he sentido desde hace mucho tiempo:
+
+¿Me permitirías seguir siendo tu chaparrito para toda la vida?
+
+Eduardo Hernández Casimiro, ¿aceptas casarte conmigo?
+                
+
+               
+          
+
+            </p>
+
+
+            <p>
+
+                - MI NIÑO
+                <span class="cursor"></span>
+
+            </p>
+
+
+            <!-- =========================
+                 CONTADOR
+            ========================== -->
+
+            <p class="counter-title">
+
+                Mi amor por ti comenzó hace...
+
+            </p>
+
+
+            <div
+                class="counter"
+                id="counter"
+            >
+
+                Calculando...
+
+            </div>
+
+
+        </article>
+
+
+    </div>
+
+
+    <!-- INDICACIÓN -->
+
+    <div class="hint">
+
+        💗 Toca el sobre para abrir la carta
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+/*
+==================================================
+        FECHA DE INICIO
+==================================================
+
+21 DE FEBRERO 2024
+10:00 AM
+
+En JavaScript:
+
+0 = enero
+1 = febrero
+2 = marzo
+...
+9 = octubre
+
+Por eso usamos el número 9.
+==================================================
+*/
+
+const inicio = new Date(
+    2024,
+    9,
+    14,
+    10,
+    0,
+    0
+);
+
+
+/*
+==================================================
+        ELEMENTOS
+==================================================
+*/
+
+const counter =
+    document.getElementById("counter");
+
+const envelope =
+    document.getElementById("envelope");
+
+
+/*
+==================================================
+        CONTADOR
+==================================================
+*/
+
+function actualizarContador(){
+
+    const ahora = new Date();
+
+
+    /*
+    Si todavía no ha llegado
+    la fecha de inicio
+    */
+
+    if(ahora < inicio){
+
+        counter.innerHTML =
+        "Todavía no ha comenzado 💗";
+
+        return;
+
+    }
+
+
+    /*
+    AÑOS
+    */
+
+    let años =
+        ahora.getFullYear()
+        -
+        inicio.getFullYear();
+
+
+    /*
+    MESES
+    */
+
+    let meses =
+        ahora.getMonth()
+        -
+        inicio.getMonth();
+
+
+    /*
+    DÍAS
+    */
+
+    let dias =
+        ahora.getDate()
+        -
+        inicio.getDate();
+
+
+    /*
+    HORAS
+    */
+
+    let horas =
+        ahora.getHours()
+        -
+        inicio.getHours();
+
+
+    /*
+    MINUTOS
+    */
+
+    let minutos =
+        ahora.getMinutes()
+        -
+        inicio.getMinutes();
+
+
+    /*
+    SEGUNDOS
+    */
+
+    let segundos =
+        ahora.getSeconds()
+        -
+        inicio.getSeconds();
+
+
+    /*
+    CORREGIR SEGUNDOS
+    */
+
+    if(segundos < 0){
+
+        segundos += 60;
+
+        minutos--;
+
+    }
+
+
+    /*
+    CORREGIR MINUTOS
+    */
+
+    if(minutos < 0){
+
+        minutos += 60;
+
+        horas--;
+
+    }
+
+
+    /*
+    CORREGIR HORAS
+    */
+
+    if(horas < 0){
+
+        horas += 24;
+
+        dias--;
+
+    }
+
+
+    /*
+    CORREGIR DÍAS
+    */
+
+    if(dias < 0){
+
+        meses--;
+
+        const ultimoDia =
+        new Date(
+            ahora.getFullYear(),
+            ahora.getMonth(),
+            0
+        ).getDate();
+
+        dias += ultimoDia;
+
+    }
+
+
+    /*
+    CORREGIR MESES
+    */
+
+    if(meses < 0){
+
+        meses += 12;
+
+        años--;
+
+    }
+
+
+    /*
+    MOSTRAR CONTADOR
+    */
+
+    counter.innerHTML =
+
+        años +
+        " años, " +
+
+        meses +
+        " meses, " +
+
+        dias +
+        " días<br>" +
+
+        horas +
+        " horas, " +
+
+        minutos +
+        " minutos, " +
+
+        segundos +
+        " segundos 💗";
+
+}
+
+
+/*
+==================================================
+        INICIAR CONTADOR
+==================================================
+*/
+
+actualizarContador();
+
+
+/*
+Actualizar cada segundo
+*/
+
+setInterval(
+    actualizarContador,
+    1000
+);
+
+
+/*
+==================================================
+        ABRIR EL SOBRE
+==================================================
+*/
+
+envelope.addEventListener(
+    "click",
+    function(){
+
+        envelope.classList.toggle("open");
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
